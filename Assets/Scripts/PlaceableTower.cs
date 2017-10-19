@@ -11,7 +11,7 @@ public class PlaceableTower : MonoBehaviour
 
     void OnGUI()
     {
-        if(isSelected)
+        if (isSelected)
         {
             GUI.Button(new Rect(100, 200, 100, 30), name);
         }
@@ -21,6 +21,7 @@ public class PlaceableTower : MonoBehaviour
         if (col.tag == "Tower")
         {
             colliders.Add(col);
+            Debug.Log("TESTTT!!!");
         }
     }
     void OnTriggerExit(Collider col)
@@ -28,9 +29,10 @@ public class PlaceableTower : MonoBehaviour
         if (col.tag == "Tower")
         {
             colliders.Remove(col);
+            Debug.Log("Exit!!!");
         }
     }
-    public void SetSelected (bool s)
+    public void SetSelected(bool s)
     {
         isSelected = s;
     }
