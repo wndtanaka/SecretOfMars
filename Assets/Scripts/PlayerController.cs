@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
             if (Physics.Raycast(ray, out hit, 100, movementMask))
             {
                 // pickup gem/crystal/energy
+                Debug.Log("Left Clicked");
             }
         }
     }

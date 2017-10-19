@@ -15,6 +15,7 @@ public class TowerManager : MonoBehaviour
     {
         scrW = Screen.width / 16;
         scrH = Screen.height / 9;
+        Screen.SetResolution(1980,1080,true);
 
         towerPlacement = GetComponent<TowerPlacement>();
     }
