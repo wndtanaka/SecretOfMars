@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class TowerPlacement : MonoBehaviour
 {
@@ -25,6 +26,10 @@ public class TowerPlacement : MonoBehaviour
         mousePos = new Vector3(mousePos.x, mousePos.y, cam.transform.position.y);
         Vector3 pos = cam.ScreenToWorldPoint(mousePos);
 
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }   
         if (currentTower != null && !hasPlaced)
         {
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~towerMask, QueryTriggerInteraction.Collide))
@@ -38,12 +43,22 @@ public class TowerPlacement : MonoBehaviour
                 {
                     hasPlaced = true;
                 }
+                if (hit.collider.tag == "Ground")
+                {
+                    hasPlaced = false;
+                    Debug.Log("Can not build on the ground, choose a platform instead");
+                }
+                else
+                {
+                    Debug.Log("A building already exist");
+                }
             }
         }
         else
         {
             if (Input.GetMouseButtonDown(0))
             {
+                
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, towerMask))
                 {
                     if (oldPlaceableTower != null)
@@ -69,11 +84,11 @@ public class TowerPlacement : MonoBehaviour
         {
             return false;
         }
-        Debug.Log("Cant create there!");
         return true;
     }
-    public void SetItem(GameObject t)
+    public void BuyTower(GameObject t)
     {
+        
         hasPlaced = false;
         currentTower = ((GameObject)Instantiate(t)).transform;
         placeableTower = currentTower.GetComponent<PlaceableTower>();

@@ -25,32 +25,32 @@ public class TowerManager : MonoBehaviour
     {
 
     }
-    void OnGUI()
-    {
-        if (shopButton)
-        {
-            if (GUI.Button(new Rect(scrW * 0f, scrH * 0, 75, 75), "Shop"))
-            {
-                shopButton = false;
-                shopPanel = true;
-            }
-        }
-        if (shopPanel)
-        {
-            if (GUI.Button(new Rect(scrW * 0f, scrH * 0, 75, 75), "Back"))
-            {
-                shopButton = true;
-                shopPanel = false;
-            }
-            GUI.Box(new Rect(scrW * 1.15f, scrH * 0f, 525, 75), "");
-            for (int i = 0; i < towers.Length; i++)
-            {
-                if (GUI.Button(new Rect(scrW *(i+1)*1.175f, scrH * 0f, 75, 75), towers[i].name))
-                {
-                    towerPlacement.SetItem(towers[i]);
-                }
-            }
+    //void OnGUI()
+    //{
+    //    if (shopButton)
+    //    {
+    //        if (GUI.Button(new Rect(scrW * 0f, scrH * 0, 75, 75), "Shop"))
+    //        {
+    //            shopButton = false;
+    //            shopPanel = true;
+    //        }
+    //    }
+    //    if (shopPanel)
+    //    {
+    //        if (GUI.Button(new Rect(scrW * 0f, scrH * 0, 75, 75), "Back"))
+    //        {
+    //            shopButton = true;
+    //            shopPanel = false;
+    //        }
+    //        GUI.Box(new Rect(scrW * 1.15f, scrH * 0f, 525, 75), "");
+    //        for (int i = 0; i < towers.Length; i++)
+    //        {
+    //            if (GUI.Button(new Rect(scrW *(i+1)*1.175f, scrH * 0f, 75, 75), towers[i].name))
+    //            {
+    //                towerPlacement.SetItem(towers[i]);
+    //            }
+    //        }
 
-        }
-    }
+    //    }
+    //}
 }

@@ -1,14 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TowerManagement : MonoBehaviour
 {
     public GameObject[] towers;
-
     private TowerPlacement towerPlacement;
 
-    // Use this for initialization
     void Start()
     {
         towerPlacement = GetComponent<TowerPlacement>();
@@ -22,7 +21,7 @@ public class TowerManagement : MonoBehaviour
     {
         for (int i = 0; i < towers.Length; i++)
         {
-            towerPlacement.SetItem(towers[i]);
+            towerPlacement.BuyTower(towers[i]);
             Debug.Log(towers[i].name);
         }
     }

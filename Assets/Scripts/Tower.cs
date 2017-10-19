@@ -6,25 +6,27 @@ public class Tower : MonoBehaviour
 {
     private Transform target;
     [Header("Tower Attributes")]
-    public float range = 5f;
-    public float attackSpeed = 1f;
+    public float range;
+    public float attackSpeed;
+    public float damage;
     private float attackTimer = 0f;
+    private float rotSpeed = 10f;
 
     [Header("References")]
     public GameObject bulletPrefab;
     public Transform firePoint;
     public Transform rotCannon;
     private string enemyTag = "Enemy";
-    public float rotSpeed = 10f;
+
 
     // Use this for initialization
-    void Start()
+    protected virtual void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         if (target == null)
             return;
@@ -34,22 +36,29 @@ public class Tower : MonoBehaviour
         Vector3 cannonRotation = Quaternion.Lerp(rotCannon.rotation, lookRotation, Time.deltaTime * rotSpeed).eulerAngles;
         rotCannon.rotation = Quaternion.Euler(0f, cannonRotation.y, 0f);
 
-        if (attackTimer <= 0f)
+        //if (attackTimer <= 0f)
+        //{
+        //    Attack();
+        //    attackTimer = 1f / attackSpeed;
+        //}
+        //attackTimer -= Time.deltaTime;
+
+        if (attackTimer >= attackSpeed)
         {
             Attack();
-            attackTimer = 1f / attackSpeed;
+            attackTimer = 0;
         }
-        attackTimer -= Time.deltaTime;
+        attackTimer += Time.deltaTime;
     }
 
-    void Attack()
+    protected virtual void Attack()
     {
         GameObject bulletGO = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation) as GameObject;
-        Bullet bullet = bulletGO.GetComponent<Bullet>();
-        bullet.direction = target.position - transform.position;
-        if (bullet != null)
+        Projectile projectile = bulletGO.GetComponent<Projectile>();
+        projectile.direction = target.position - transform.position;
+        if (projectile != null)
         {
-            bullet.Fire(target);
+            projectile.Fire(target);
         }
     }
 
