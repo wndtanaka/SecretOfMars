@@ -39,11 +39,12 @@ public class TowerPlacement : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0))
             {
+
                 if (IsLegalPosition())
                 {
                     hasPlaced = true;
                 }
-                if (hit.collider.tag == "Ground")
+                if (hit.collider.tag != "Platform")
                 {
                     hasPlaced = false;
                     Debug.Log("Can not build on the ground, choose a platform instead");

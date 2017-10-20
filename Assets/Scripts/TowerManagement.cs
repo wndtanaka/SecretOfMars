@@ -17,12 +17,45 @@ public class TowerManagement : MonoBehaviour
     void Update()
     {
     }
-    public void BuildTower()
+    void BuildTower(int i)
     {
-        for (int i = 0; i < towers.Length; i++)
-        {
-            towerPlacement.BuyTower(towers[i]);
-            Debug.Log(towers[i].name);
-        }
+        i--; // binary's sake
+        towerPlacement.BuyTower(towers[i]);
+        Debug.Log(towers[i].name);
+    }
+    public void TowerOne()
+    {
+        int i = 1;
+        BuildTower(i);
+    }
+    public void TowerTwo()
+    {
+        int i = 2;
+        BuildTower(i);
+    }
+    public void TowerThree()
+    {
+        int i = 3;
+        BuildTower(i);
+    }
+    public void TowerFour()
+    {
+        int i = 4;
+        BuildTower(i);
+    }
+    public void TowerFive()
+    {
+        int i = 5;
+        BuildTower(i);
+    }
+    public void TowerSix()
+    {
+        int i = 6;
+        BuildTower(i);
+    }
+    public void TowerSeven()
+    {
+        int i = 7;
+        BuildTower(i);
     }
 }
